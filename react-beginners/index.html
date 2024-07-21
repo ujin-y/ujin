@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  const root = document.getElementById('root');
+  function Title() { 
+    return( 
+      <h3 id="title" 
+      onMouseEnter={() => console.log('mouse enter')}
+      >Hello I'm a title</h3> 
+    );
+  }; //**컴포넌트는 무조건 대분자로 시작해야한다
+  const Button = () => ( 
+  <button 
+    style={{backgroundColor: 'tomato'}}
+    onClick={() => console.log('im clicked')}
+  >Click me</button>
+  );
+
+  // const h3 = React.createElement(
+  //   'h3', 
+  //   {
+  //     onMouseEnter: () => console.log('mouse enter')
+  //   }, 
+  //   'hello i am title'
+  // );
+
+  // const btn = React.createElement(
+  //   'button', {
+  //     onClick: () => console.log('im clicked')
+  //   },
+  //   'Click me'
+  // );
+  // const container = React.createElement('div', null, [title, button]);
+  const Container = () => ( 
+  <div>
+    <Title/>
+    <Button/>
+  </div>
+  );
+  ReactDOM.render(<Container/>, root);
+</script>
+</html>
