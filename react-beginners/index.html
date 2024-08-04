@@ -8,57 +8,55 @@
 <body>
   <div id="root"></div>
 </body>
-<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script type="text/babel">
+
+<script type="text/babel">  
+  function Btn({ text, onClick, fontSize = 12 }){
+    
+    return <button  
+      onClick={onClick}
+      style={{
+        backgroundColor: "tomato",
+        color: "white",
+        padding: "10px 20px",
+        border: 0,
+        borderRadius: 10,
+        fontSize
+      }}>
+    {text}
+    </button>
+  }
+
+  // const MemorizedBtn = React.memo(Btn)
   
-  
+  Btn.propTypes = {
+    text: PropTypes.string.isRequired,
+    fontSize : PropTypes.number
+  };
+
   function App(){ 
-    const [amount, setAmount] = React.useState(0);
-    const [flipped, setFlipped] = React.useState(false);
-    const onChange = (event) =>{
-      setAmount(event.target.value)
-    };
-    const reset = () => setAmount(0);
-    const onFlip = () => {
-      reset();
-      setFlipped((current) => !current)
-    };
+    const [value, setValue] = React.useState("Save Changes");
+    const changeValue = () => setValue("Revert Changes");
 
     return(
       <div>
-        <h3>Super Converter</h3> 
-        <div>
-        <label htmlFor="minutes">Minutes</label>
-        <input 
-        value={flipped ? amount * 60 : amount} 
-        type="number" 
-        id="minutes" 
-        placeholder="Minutes" 
-        onChange={onChange}
-        disabled={flipped}
-        />
-        </div>
-        <div>
-        <label htmlFor="hours">Hours</label>
-          <input
-          value={flipped ? amount : Math.round(amount / 60)} 
-          type="number" 
-          id="hours" 
-          placeholder="Hours"
-          onChange={onChange}
-          disabled={!flipped}
-          />
-        </div>
-        <button onClick={reset}>Reset</button>
-        <button onClick={onFlip}>Flip</button>
+        <Btn text={value} fontSize={18} onClick={changeValue}/>
+        <Btn text={"Continue"}/>
       </div>
-    );
+    )
   };
   const root = document.getElementById('root');
   ReactDOM.render(<App />, root);
 </script>
+<!-- 컴포넌트는 무조건 대문자로 시작해야한다 -->
+<!-- 컴포넌트 리턴문 중괄호 안에는 자바스크립트를 쓸 수 있다 -->
+<!-- props = 컴포넌트로 들어가는 첫번째 인자 / 컴포넌트 내에 value를 설정하여 같은 컴포를 사용하면서 다른 스타일이나 텍스트를 지정할 수 잇따. -->
+<!-- 불러온 컴포넌트에 넣는 value는 props로 동작한다 onclick 또는 style같이 직접 입력하더라도 event 또는 css로 동작하지 않고 그냥 props의 이름이다. = html에 직접 실행하는것과 같지 않다 just props! -->
+<!-- ㄴProps를 만든다면 컴포넌트와 return문에 꼭 같이 넣어줘야한다. -->
+<!-- Props가 변경되지 않는 한에서 리렌더 하지 않을 수 있게 할 수 있다 = memo -->
 
 
 
