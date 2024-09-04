@@ -13,10 +13,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route  path={`${process.env.PUBLIC_URL}/movie/:id`} element={<Detail />}>
+        <Route  path={`/movie/:id`} element={<Detail />}>
           <Detail />
         </Route>
-        <Route path={`${process.env.PUBLIC_URL}/`} element={<Home />}>
+        <Route path={`/`} element={<Home />}>
           <Home />
         </Route>
       </Switch>
