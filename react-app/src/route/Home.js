@@ -6,6 +6,7 @@ function Home(){
   const [movies, setMovies] = useState([]);
   const getMovies = async() => {
     const json = await (await (fetch("https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year"))).json();
+    //https://api.themoviedb.org/3/movie/changes?api_key=55b6627f7256bd45709f7e5bea0da7e3
     
     setMovies(json.data.movies);
     setLoading(false);
