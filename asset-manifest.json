@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/ujin/static/js/main.c677f12b.js",
+    "main.js": "/ujin/static/js/main.550530d5.js",
     "index.html": "/ujin/index.html",
-    "main.c677f12b.js.map": "/ujin/static/js/main.c677f12b.js.map"
+    "main.550530d5.js.map": "/ujin/static/js/main.550530d5.js.map"
   },
   "entrypoints": [
-    "static/js/main.c677f12b.js"
+    "static/js/main.550530d5.js"
   ]
 }
